@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #142033;
+  --ink-soft: #3c485c;
+  --muted: #6b7688;
+  --line: #e7e2d8;
+  --surface: #ffffff;
+  --surface-alt: #faf7f1;
+  --accent: #d9603c;
+  --accent-ink: #ffffff;
+  --accent-2: #1f4b33;
+  --sand: #f4ede0;
+
+  --sky-top: #bfe3f7;
+  --sky-mid: #eaf6ff;
+  --sky-bottom: #ffffff;
+  --page-tint-top: #eef6fb;
+  --star-opacity: 0;
+  --hero-fg: var(--ink);
+  --hero-fg-muted: var(--ink-soft);
+}
+
+:root[data-time="dawn"] {
+  --sky-top: #ffd7ad;
+  --sky-mid: #ffb3a1;
+  --sky-bottom: #fff7ef;
+  --page-tint-top: #fff1e6;
+  --star-opacity: 0;
+  --hero-fg: #3a2418;
+  --hero-fg-muted: #6b4a38;
+}
+
+:root[data-time="day"] {
+  --sky-top: #bfe3f7;
+  --sky-mid: #eaf6ff;
+  --sky-bottom: #ffffff;
+  --page-tint-top: #eef6fb;
+  --star-opacity: 0;
+  --hero-fg: var(--ink);
+  --hero-fg-muted: var(--ink-soft);
+}
+
+:root[data-time="dusk"] {
+  --sky-top: #ff9d6c;
+  --sky-mid: #c9679a;
+  --sky-bottom: #fff3ec;
+  --page-tint-top: #fdeee3;
+  --star-opacity: 0.25;
+  --hero-fg: #3a1f2c;
+  --hero-fg-muted: #6b3f52;
+}
+
+:root[data-time="night"] {
+  --sky-top: #060a1f;
+  --sky-mid: #1b2a52;
+  --sky-bottom: #ffffff;
+  --page-tint-top: #eef0fa;
+  --star-opacity: 1;
+  --hero-fg: #eef1ff;
+  --hero-fg-muted: #b7c0e6;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-sand: var(--sand);
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+}
+
+/* Fixed, whole-page ambient tint that shifts gently with time of day.
+   Stays white-dominant so body copy always reads on a light background. */
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--page-tint-top) 0%, #ffffff 55%);
+  transition: background 3s ease;
+}
+
+.hero-sky {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--sky-top) 0%,
+    var(--sky-mid) 45%,
+    var(--sky-bottom) 100%
+  );
+  transition: background 3s ease, color 3s ease;
+  color: var(--hero-fg);
+}
+
+.hero-sky::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: var(--star-opacity);
+  transition: opacity 3s ease;
+  background-image: radial-gradient(1.5px 1.5px at 10% 20%, #fff 100%, transparent 0),
+    radial-gradient(1.5px 1.5px at 25% 12%, #fff 100%, transparent 0),
+    radial-gradient(1px 1px at 40% 30%, #fff 100%, transparent 0),
+    radial-gradient(1.5px 1.5px at 60% 8%, #fff 100%, transparent 0),
+    radial-gradient(1px 1px at 75% 22%, #fff 100%, transparent 0),
+    radial-gradient(1.5px 1.5px at 88% 15%, #fff 100%, transparent 0),
+    radial-gradient(1px 1px at 15% 40%, #fff 100%, transparent 0),
+    radial-gradient(1.5px 1.5px at 50% 5%, #fff 100%, transparent 0),
+    radial-gradient(1px 1px at 95% 35%, #fff 100%, transparent 0),
+    radial-gradient(1.5px 1.5px at 33% 45%, #fff 100%, transparent 0);
+  background-repeat: no-repeat;
+}
+
+.text-hero-muted {
+  color: var(--hero-fg-muted);
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(20, 32, 51, 0.25);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
