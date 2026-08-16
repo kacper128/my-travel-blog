@@ -74,7 +74,7 @@ export default function SearchBar({ items }: { items: ContentSummary[] }) {
 
   return (
     <div ref={containerRef} className="relative w-full max-w-xl">
-      <div className="flex items-center gap-3 rounded-full border border-line bg-white/95 px-5 py-3.5 shadow-[0_20px_45px_-25px_rgba(20,32,51,0.35)] backdrop-blur transition focus-within:border-accent focus-within:shadow-[0_20px_45px_-20px_rgba(217,96,60,0.35)]">
+      <div className="flex items-center gap-3 rounded-full border border-line bg-white/95 px-5 py-3.5 shadow-[0_20px_45px_-25px_rgba(20,32,51,0.35)] backdrop-blur transition focus-within:border-accent focus-within:shadow-[0_20px_45px_-20px_rgba(31,75,51,0.35)]">
         <Search className="h-5 w-5 shrink-0 text-muted" strokeWidth={2} />
         <input
           ref={inputRef}
