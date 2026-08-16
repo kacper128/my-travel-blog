@@ -12,7 +12,7 @@ export default function GuidesPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-      <p className="text-sm font-semibold uppercase tracking-wider text-accent-2">Poradniki</p>
+      <p className="text-sm font-semibold uppercase tracking-wider text-accent">Poradniki</p>
       <h1 className="font-display mt-2 max-w-2xl text-4xl font-semibold text-ink">
         Praktyczne poradniki
       </h1>
